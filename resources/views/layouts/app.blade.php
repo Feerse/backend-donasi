@@ -58,7 +58,7 @@
                 </a>
 
                 <a class="flex items-center mt-4 py-2 px-6 hover:bg-gray-700 hover:bg-opacity-25 hover:text-gray-100 {{ Request::is('admin/category*') ? ' bg-gray-700 bg-opacity-25 text-gray-100' :  'text-gray-500' }}"
-                    href="#">
+                    href="{{ route('admin.category.index') }}">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                         xmlns="http://www.w3.org/2000/svg">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -172,29 +172,29 @@
         </div>
     </div>
 
+    @if(session()->has('success'))
     <script>
-        @if(session()->has('success'))
-
         Swal.fire({
             icon: 'success',
             title: 'BERHASIL!',
+            padding: '32px 0',
             text: '{{ session('success') }}',
             showConfirmButton: false,
             timer: 3000
         })
-
-        @elseif(session()->has('error'))
-
+    </script>
+    @elseif(session()->has('error'))
+    <script>
         Swal.fire({
             icon: 'error',
             text: 'GAGAL!',
+            padding: '32px 0',
             title: '{{ session('error') }}',
             showConfirmButton: false,
             timer: 3000
         })
-
-        @endif
     </script>
+    @endif
 </body>
 
 </html>
