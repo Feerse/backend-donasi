@@ -45,11 +45,9 @@ class CategoryController extends Controller
         ]);
 
         // Kondisi jika sukses disimpan
-        if ($category) {
-            return to_route('admin.category.index')->with(['success' => 'Data Berhasil Disimpan!']);
-        } else {
-            return to_route('admin.category.index')->with(['error' => 'Data Gagal Disimpan!']);
-        }
+        return $category
+            ? to_route('admin.category.index')->with(['success' => 'Data Berhasil Disimpan!'])
+            : to_route('admin.category.index')->with(['error' => 'Data Gagal Disimpan!']);
     }
 
     /**
@@ -62,12 +60,12 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $request->validate([
-            'image' => 'required|image|mimes:jpeg,jpg,png|max:2000',
+            'image' => 'image|mimes:jpeg,jpg,png|max:2000',
             'name' => 'required|unique:categories,name,' . $category->id
         ]);
 
         // Kondisi jika image kosong
-        if ($request->file('image') === '') {
+        if (!$request->hasFile('image')) {
             // Update data tanpa image
             $category = Category::findOrFail($category->id);
             $category->update([
@@ -92,11 +90,9 @@ class CategoryController extends Controller
         }
 
         // Kondisi sukses atau gagal
-        if ($category) {
-            return to_route('admin.category.index')->with(['success' => 'Data berhasil disimpan!']);
-        } else {
-            return to_route('admin.category.index')->with(['error' => 'Data gagal disimpan!']);
-        }
+        return $category
+            ? to_route('admin.category.index')->with(['success' => 'Data Berhasil Disimpan!'])
+            : to_route('admin.category.index')->with(['error' => 'Data Gagal Disimpan!']);
     }
 
     /**
@@ -108,14 +104,12 @@ class CategoryController extends Controller
         Storage::disk('local')->delete('public/categories/' . basename($category->image));
         $category->delete();
 
-        if ($category) {
-            return response()->json([
+        return $category
+            ? response()->json([
                 'status' => 'success'
-            ]);
-        } else {
-            return response()->json([
+            ])
+            : response()->json([
                 'status' => 'error'
             ]);
-        }
     }
 }
