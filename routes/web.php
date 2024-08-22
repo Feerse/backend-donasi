@@ -17,5 +17,6 @@ Route::prefix('admin')->group(function () {
         Route::resource('/campaign', CampaignController::class, [
             'as' => 'admin'
         ]);
+        Route::get('/donatur', [DonaturController::class, 'index'])->name('admin.donatur.index');
     });
 });
