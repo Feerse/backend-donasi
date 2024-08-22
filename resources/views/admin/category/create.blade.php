@@ -11,7 +11,7 @@
                 @csrf
                 <div class="grid grid-cols-1 gap-6 mt-4">
                     <div>
-                        <label class="text-gray-700" for="image">GAMBAR</label>
+                        <label class="text-gray-700" for="image">GAMBAR<span class="text-red-500">*</span></label>
                         <input class="form-input w-full mt-2 rounded-md bg-gray-200 focus:bg-white p-3" type="file"
                             name="image">
                         @error('image')
@@ -24,7 +24,7 @@
                     </div>
 
                     <div>
-                        <label class="text-gray-700" for="name">NAMA KATEGORI</label>
+                        <label class="text-gray-700" for="name">NAMA KATEGORI<span class="text-red-500">*</span></label>
                         <input class="form-input w-full mt-2 rounded-md bg-gray-200 focus:bg-white" type="text"
                             name="name" value="{{ old('name') }}" placeholder="Nama Kategori">
                         @error('name')

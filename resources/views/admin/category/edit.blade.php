@@ -26,7 +26,7 @@
                     </div>
 
                     <div>
-                        <label class="text-gray-700" for="name">NAMA KATEGORI</label>
+                        <label class="text-gray-700" for="name">NAMA KATEGORI<span class="text-red-500">*</span></label>
                         <input class="form-input w-full mt-2 rounded-md bg-gray-200 focus:bg-white" type="text"
                             name="name" value="{{ old('name', $category->name) }}" placeholder="Nama Kategori">
                         @error('name')
