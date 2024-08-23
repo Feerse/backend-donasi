@@ -18,5 +18,7 @@ Route::prefix('admin')->group(function () {
             'as' => 'admin'
         ]);
         Route::get('/donatur', [DonaturController::class, 'index'])->name('admin.donatur.index');
+        Route::get('/donation', [DonationController::class, 'index'])->name('admin.donation.index');
+        Route::get('/donation/filter', [DonationController::class, 'filter'])->name('admin.donation.filter');
     });
 });
