@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\RegisterController;
 use Illuminate\Http\Request;
@@ -9,8 +10,9 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
 
-/**
- * API Register
- */
 Route::post('/register', [RegisterController::class, 'register']);
 Route::post('/login', [LoginController::class, 'login']);
+
+Route::get('/category', [CategoryController::class, 'index']);
+Route::get('/category/{slug}', [CategoryController::class, 'show']);
+Route::get('/categoryHome', [CategoryController::class, 'categoryHome']);
