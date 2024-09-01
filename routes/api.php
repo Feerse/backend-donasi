@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\CampaignController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\LoginController;
+use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\RegisterController;
 use App\Http\Controllers\Api\SliderController;
 use Illuminate\Http\Request;
@@ -23,3 +24,8 @@ Route::get('/campaign', [CampaignController::class, 'index']);
 Route::get('/campaign/{slug}', [CampaignController::class, 'show']);
 
 Route::get('/slider', [SliderController::class, 'index']);
+
+// `middleware('auth:api')` artinya route ini hanya bisa diakses jika user/donatur sudah memiliki akses otentikasi API terlebih dahulu
+Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth:api');
+Route::post('/profile', [ProfileController::class, 'update'])->middleware('auth:api');
+Route::post('/profile/password', [ProfileController::class, 'updatePassword'])->middleware('auth:api');
