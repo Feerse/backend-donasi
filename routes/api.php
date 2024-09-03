@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\CampaignController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\DonationController;
 use App\Http\Controllers\Api\LoginController;
 use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\RegisterController;
@@ -29,3 +30,7 @@ Route::get('/slider', [SliderController::class, 'index']);
 Route::get('/profile', [ProfileController::class, 'index'])->middleware('auth:api');
 Route::post('/profile', [ProfileController::class, 'update'])->middleware('auth:api');
 Route::post('/profile/password', [ProfileController::class, 'updatePassword'])->middleware('auth:api');
+
+Route::get('/donation', [DonationController::class, 'index'])->middleware('auth:api');
+Route::post('/donation', [DonationController::class, 'store'])->middleware('auth:api');
+Route::post('/donation/notification', [DonationController::class, 'notificationHandler']);
